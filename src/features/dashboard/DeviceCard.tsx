@@ -11,6 +11,8 @@ const typeDetails: Record<string, { label: string; icon: string }> = {
 
 type Props = { device: Device; parent: boolean; onOpen: () => void; onToggle: () => void; onEdit: () => void; onDelete: () => void };
 
+// One tile in the device grid: tap the body to open the control sheet, use
+// the switch to toggle power; Edit/Delete appear for parent accounts only.
 export function DeviceCard({ device, parent, onOpen, onToggle, onEdit, onDelete }: Props) {
   const isOn = device.status === 'on';
   const detail = typeDetails[device.type] || { label: 'Device', icon: '⌂' };

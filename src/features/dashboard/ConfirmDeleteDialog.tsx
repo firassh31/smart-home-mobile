@@ -5,6 +5,7 @@ import { colors, font } from '@/constants/colors';
 
 type Props = { deviceName?: string; visible: boolean; busy: boolean; onCancel: () => void; onConfirm: () => void };
 
+// Confirmation dialog shown before a device is permanently deleted.
 export function ConfirmDeleteDialog({ deviceName, visible, busy, onCancel, onConfirm }: Props) {
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>

@@ -1,3 +1,8 @@
+/**
+ * Typed API client for the hosted MSHome backend.
+ * Every call goes through request(), which sets JSON headers, attaches the
+ * JWT when given, and converts failures into user-readable Error messages.
+ */
 import type { AuthResponse, Device, DeviceDraft, DeviceType, Session } from '@/types/smart-home';
 
 const API_URL = 'https://smart-home-server-j6ji.onrender.com';

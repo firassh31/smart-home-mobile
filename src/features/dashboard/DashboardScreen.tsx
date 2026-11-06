@@ -16,6 +16,11 @@ import { DeviceCard } from './DeviceCard';
 import { DeviceControlSheet } from './DeviceControlSheet';
 import { DeviceEditorSheet } from './DeviceEditorSheet';
 
+/**
+ * Main device dashboard: hero stats, room filter chips, device grid, and the
+ * add/edit, control, and delete sheets. Parents manage inventory and see the
+ * family invite code; children only see devices shared with them.
+ */
 export function DashboardScreen() {
   const { session, ready, logout } = useAuth();
   const [devices, setDevices] = useState<Device[]>([]);
@@ -39,6 +44,8 @@ export function DashboardScreen() {
     toastTimer.current = setTimeout(() => setNotice(''), 2800);
   }, []);
 
+  // Central API error handler: an expired/invalid session logs the user out
+  // and returns them to the login screen; other errors surface as a toast.
   const handleError = useCallback(async (error: unknown) => {
     const message = (error as Error).message || 'Something went wrong. Please try again.';
     if (/invalid or expired|access denied/i.test(message)) {
@@ -94,6 +101,8 @@ export function DashboardScreen() {
     setRefreshing(false);
   };
 
+  // Optimistic toggle: the UI flips immediately and rolls back if the API
+  // request fails, so the switch always feels instant.
   const toggleDevice = async (device: Device) => {
     if (!session) return;
     const previousStatus = device.status;
@@ -134,6 +143,8 @@ export function DashboardScreen() {
     finally { setSaving(false); }
   };
 
+  // Persists the control sheet's edits: nested state (brightness, temperature,
+  // lock) first, then the on/off status, then syncs the local list.
   const saveSettings = async (device: Device, status: Device['status'], state: DeviceState) => {
     if (!session) return;
     const hasState = Object.keys(state).length > 0;

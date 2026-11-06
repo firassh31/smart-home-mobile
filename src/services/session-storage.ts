@@ -1,3 +1,8 @@
+/**
+ * Persists the auth session (JWT, role, family code, phone verification).
+ * Native platforms use expo-secure-store (encrypted keychain/keystore);
+ * the web build falls back to localStorage, which SecureStore doesn't support.
+ */
 import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 import type { Session } from '@/types/smart-home';

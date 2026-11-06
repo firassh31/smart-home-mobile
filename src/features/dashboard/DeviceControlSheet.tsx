@@ -7,6 +7,9 @@ import type { Device, DeviceState } from '@/types/smart-home';
 
 type Props = { device: Device; saving: boolean; onClose: () => void; onSave: (status: Device['status'], state: DeviceState) => Promise<void> };
 
+// Bottom sheet for controlling one device: power on/off plus the control for
+// its type (light brightness, AC temperature 16-30°C, or door lock). Edits are
+// local drafts until Save, which hands them to the dashboard to persist.
 export function DeviceControlSheet({ device, saving, onClose, onSave }: Props) {
   const [status, setStatus] = useState<Device['status']>(device.status || 'off');
   const [value, setValue] = useState(device.type === 'light' ? device.state?.brightness ?? 10 : device.state?.temperature ?? 22);

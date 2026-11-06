@@ -4,6 +4,8 @@ import { router } from 'expo-router';
 import { colors } from '@/constants/colors';
 import { useAuth } from '@/providers/AuthProvider';
 
+// Entry route: waits for the stored session to load, then forwards to the
+// dashboard (signed in) or the login screen (signed out).
 export default function IndexRoute() {
   const { ready, session } = useAuth();
   useEffect(() => {

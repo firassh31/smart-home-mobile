@@ -4,6 +4,7 @@ import { colors, font } from '@/constants/colors';
 
 type Props = React.ComponentProps<typeof TextInput> & { label: string };
 
+// Labeled text input; forwards every TextInput prop (keyboardType, secure...).
 export function TextField({ label, style, ...props }: Props) {
   return (
     <View style={styles.field}>

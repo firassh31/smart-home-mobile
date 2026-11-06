@@ -11,6 +11,12 @@ import { colors, font } from '@/constants/colors';
 import { useAuth } from '@/providers/AuthProvider';
 import type { UserRole } from '@/types/smart-home';
 
+/**
+ * Shared login/registration form.
+ * Login accepts a username, email, or phone number as the identifier.
+ * Registration collects email + phone, then routes to the OTP screen: the
+ * session is stored only after the SMS code is confirmed (see AuthProvider).
+ */
 export function AuthForm({ variant }: { variant: 'login' | 'register' }) {
   const isLogin = variant === 'login';
   const { login, register } = useAuth();

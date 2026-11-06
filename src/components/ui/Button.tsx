@@ -4,6 +4,7 @@ import { colors, font } from '@/constants/colors';
 
 type Props = { title: string; onPress: () => void; secondary?: boolean; danger?: boolean; disabled?: boolean };
 
+// Primary action button with secondary (outlined) and danger (red) variants.
 export function Button({ title, onPress, secondary, danger, disabled }: Props) {
   return (
     <Pressable disabled={disabled} onPress={onPress} style={({ pressed }) => [styles.button, secondary && styles.secondary, danger && styles.danger, disabled && styles.disabled, pressed && !disabled && styles.pressed]}>

@@ -9,6 +9,8 @@ import type { Device, DeviceDraft, DeviceType } from '@/types/smart-home';
 
 type Props = { visible: boolean; token: string; device?: Device; saving: boolean; onClose: () => void; onSave: (draft: DeviceDraft) => Promise<void> };
 
+// Bottom sheet shared by "Add Device" and "Edit Device" (parent only): loads
+// the type catalog from the API, validates name/room, and toggles child access.
 export function DeviceEditorSheet({ visible, token, device, saving, onClose, onSave }: Props) {
   const [types, setTypes] = useState<DeviceType[]>([]);
   const [name, setName] = useState(device?.name || '');
